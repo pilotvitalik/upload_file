@@ -7,6 +7,11 @@ function App() {
   const dispatch = useDispatch();
   const count = useSelector(state => state.count.count);
 
+  function countFiles(e){
+      dispatch({type: 'addFiles/count', payload: e.target.files});
+      e.target.value = null;
+  }
+
   let popup;
   if (count > 1 && count < 6){
     popup = '';
@@ -23,7 +28,7 @@ function App() {
           id="input__file"
           className={style.input}
           multiple
-          onChange={(e) => {dispatch({type: 'addFiles/count', payload: e.target.files})}}/>
+          onChange={countFiles}/>
        <label htmlFor="input__file" className={style.fileButton}>
           <span className={style.fileButtonText}>Add file</span>
        </label>
